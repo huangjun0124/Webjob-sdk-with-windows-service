@@ -35,7 +35,7 @@ namespace ContosoAdsWeb
 
             Trace.TraceInformation("Creating images blob container");
             var blobClient = storageAccount.CreateCloudBlobClient();
-            var imagesBlobContainer = blobClient.GetContainerReference("images");
+            var imagesBlobContainer = blobClient.GetContainerReference("contosoadsimages");
             if (imagesBlobContainer.CreateIfNotExists())
             {
                 // Enable public access on the newly created "images" container.
@@ -48,7 +48,7 @@ namespace ContosoAdsWeb
 
             Trace.TraceInformation("Creating queues");
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            var blobnameQueue = queueClient.GetQueueReference("thumbnailrequest");
+            var blobnameQueue = queueClient.GetQueueReference("contosoadsthumbnailrequest");
             blobnameQueue.CreateIfNotExists();
 
             Trace.TraceInformation("Storage initialized");

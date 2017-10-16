@@ -43,7 +43,7 @@ namespace ContosoAdsWeb.Controllers
             //blobClient.DefaultRequestOptions.RetryPolicy = new LinearRetry(TimeSpan.FromSeconds(3), 3);
 
             // Get a reference to the blob container.
-            imagesBlobContainer = blobClient.GetContainerReference("images");
+            imagesBlobContainer = blobClient.GetContainerReference("contosoadsimages");
 
             // Get context object for working with queues, and 
             // set a default retry policy appropriate for a web user interface.
@@ -51,7 +51,7 @@ namespace ContosoAdsWeb.Controllers
             //queueClient.DefaultRequestOptions.RetryPolicy = new LinearRetry(TimeSpan.FromSeconds(3), 3);
 
             // Get a reference to the queue.
-            thumbnailRequestQueue = queueClient.GetQueueReference("thumbnailrequest");
+            thumbnailRequestQueue = queueClient.GetQueueReference("contosoadsthumbnailrequest");
         }
 
         // GET: Ad
@@ -111,7 +111,6 @@ namespace ContosoAdsWeb.Controllers
                 db.Ads.Add(ad);
                 await db.SaveChangesAsync();
                 Trace.TraceInformation("Created AdId {0} in database", ad.AdId);
-
                 if (imageBlob != null)
                 {
                     BlobInformation blobInfo = new BlobInformation() { AdId = ad.AdId, BlobUri = new Uri(ad.ImageURL) };

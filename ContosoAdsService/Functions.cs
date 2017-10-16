@@ -13,9 +13,9 @@ namespace ContosoAdsService
     public class Functions
     {
         public static void GenerateThumbnail(
-            [QueueTrigger("thumbnailrequest")] BlobInformation blobInfo,
-            [Blob("images/{BlobName}", FileAccess.Read)] Stream input,
-            [Blob("images/{BlobNameWithoutExtension}_thumbnail.jpg")] CloudBlockBlob outputBlob)
+            [QueueTrigger("contosoadsthumbnailrequest")] BlobInformation blobInfo,
+            [Blob("contosoadsimages/{BlobName}", FileAccess.Read)] Stream input,
+            [Blob("contosoadsimages/{BlobNameWithoutExtension}_thumbnail.jpg")] CloudBlockBlob outputBlob)
         {
             using (Stream output = outputBlob.OpenWrite())
             {
